@@ -45,7 +45,7 @@ router.post("/signup", (req, res, next) => {
     User.create({username, password: passwordEncrypted})
     .then(user => {
         // console.log("user created!!", user)
-        res.render("profile", user)
+        res.redirect("/login")
     })
     .catch(err => next(err))
   
