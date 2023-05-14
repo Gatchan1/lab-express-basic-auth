@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
-const saltRounds = 14;
+const saltRounds = 12;
 
 router.get("/login", (req, res, next) => {
     res.render("login")
@@ -26,10 +26,12 @@ router.post("/login", (req, res, next) => {
         }
         let userDB = users[0];
         if (bcrypt.compareSync(password, userDB.password)) {
-            req.session.currentUser
-        }
-
-        
+            req.session.currentUser = userDB
+            res.redirect('/userProfile')
+        } else {
+            res.render('auth/login', { errorMessage: 'Incorrect password'
+        });
+        }        
         
     })
     .catch(err => next(err))

@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
-const saltRounds = 14;
+const saltRounds = 12;
 
 router.get("/signup", (req, res, next) => {
   res.render("signup");
@@ -30,7 +30,7 @@ router.post("/signup", (req, res, next) => {
   User.find({ username })
     .then((users) => {
       if (users.length != 0) {
-        singUpData.errorMessage = "Username alreadey registered";
+        singUpData.errorMessage = "Username already exists";
         res.render("signup", singUpData);
         return;
       }
