@@ -10,28 +10,28 @@ router.get("/signup", (req, res, next) => {
 router.post("/signup", (req, res, next) => {
   // console.log(req.body)
   let { username, password, passwordRepeat } = req.body;
-  let singUpData = {
+  let signUpData = {
     username,
     password,
     passwordRepeat,
   };
 
   if (username == "" || password == "" || passwordRepeat == "") {
-    singUpData.errorMessage = "You can't leave any blank fields";
-    res.render("signup", singUpData);
+    signUpData.errorMessage = "You can't leave any blank fields";
+    res.render("signup", signUpData);
     return;
     }
   if (password != passwordRepeat) {
-    singUpData.errorMessage = "The passwords should match";
-    res.render("signup", singUpData);
+    signUpData.errorMessage = "The passwords should match";
+    res.render("signup", signUpData);
     return;
   }
 
   User.find({ username })
     .then((users) => {
       if (users.length != 0) {
-        singUpData.errorMessage = "Username already exists";
-        res.render("signup", singUpData);
+        signUpData.errorMessage = "Username already exists";
+        res.render("signup", signUpData);
         return;
       }
     })
