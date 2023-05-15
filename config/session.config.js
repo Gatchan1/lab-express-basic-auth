@@ -14,6 +14,6 @@ module.exports = (app) => {
             httpOnly: true,
             maxAge: 60000
         },
-        store: mongoStore.create({mongoUrl:process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/auth"}) // ojo, esta línea me ha traído de cabeza; era importantísimo cambiar también aquí el localhost por 127.0.0.1
+        store: mongoStore.create({mongoUrl:process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/lab-express-basic-auth"}) // ojo, esta línea me ha traído de cabeza; era importantísimo cambiar también aquí el localhost por 127.0.0.1
     }));
 }
